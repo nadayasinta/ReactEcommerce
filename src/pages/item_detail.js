@@ -6,7 +6,7 @@ import Logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import DefaultImage from "../assets/images/picture.png";
 
-class Category extends React.Component {
+class ItemDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -219,4 +219,4 @@ class Category extends React.Component {
     }
 }
 
-export default Category;
+export default ItemDetail;

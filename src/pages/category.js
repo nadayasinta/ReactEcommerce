@@ -19,7 +19,8 @@ class Category extends React.Component {
         if (self.props.match.params.category === "search") {
             const req = {
                 method: "get",
-                url: "http://localhost:5000/item/list"
+                // url: "http://localhost:5000/item/list"
+                url: "http://api.lendandrent.xyz/item/list"
             };
             axios(req)
                 .then(function(response) {
@@ -32,7 +33,8 @@ class Category extends React.Component {
         } else {
             const req = {
                 method: "get",
-                url: "http://localhost:5000/item/list",
+                // url: "http://localhost:5000/item/list",
+                url: "http://api.lendandrent.xyz/item/list",
                 params: {
                     filter_by_category: self.props.match.params.category
                 }

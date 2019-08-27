@@ -6,6 +6,9 @@ class EditProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: "",
+            username: "",
+            password: "",
             address: "",
             city: "",
             province: "",
@@ -15,32 +18,66 @@ class EditProfile extends React.Component {
         };
     }
 
-    doEditProfile = event => {
+    doEditProfile = async event => {
         event.preventDefault();
         const self = this;
-        const req = {
-            method: "patch",
-            url: "http://localhost:5000/user/me/detail",
+        const req1 = {
+            method: "put",
+            url: "http://localhost:5000/user/me",
             data: {
-                address: self.state.address,
-                city: self.state.city,
-                province: self.state.province,
-                telephone: self.state.telephone,
-                email: self.state.email,
-                photo: self.state.photo
-            },
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
+                name: self.state.name,
+                username: self.state.username,
+                password: self.state.password
             }
         };
-        axios(req)
-            .then(function(response) {
-                console.log("BEANR", response.data);
-                self.props.history.push("/profile");
+        await axios(req1)
+            .then(async function(response) {
+                console.log("BENAR", response.data.token);
+                const req2 = {
+                    method: "patch",
+                    url: "http://localhost:5000/user/me/detail",
+                    data: {
+                        address: self.state.address,
+                        city: self.state.city,
+                        province: self.state.province,
+                        telephone: self.state.telephone,
+                        email: self.state.email,
+                        photo: self.state.photo
+                    },
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token")
+                    }
+                };
+                await axios(req2)
+                    .then(function(response) {
+                        console.log("BEANR", response.data);
+                        self.props.history.push("/profile");
+                    })
+                    .catch(function(error) {
+                        console.log("ERROR", error);
+                    });
             })
             .catch(function(error) {
                 console.log("ERROR", error);
             });
+    };
+
+    handleNameChange = event => {
+        this.setState({ name: event.target.value }, () =>
+            console.log("ya1", this.state.name)
+        );
+    };
+
+    handleUsernameChange = event => {
+        this.setState({ username: event.target.value }, () =>
+            console.log("ya1", this.state.username)
+        );
+    };
+
+    handlePasswordChange = event => {
+        this.setState({ password: event.target.value }, () =>
+            console.log("ya1", this.state.password)
+        );
     };
 
     handleAddressChange = event => {
@@ -87,6 +124,45 @@ class EditProfile extends React.Component {
                     <form onSubmit={this.doEditProfile}>
                         <div className=" row justify-content-center text-center">
                             <h4 className="fontoswald">EDIT PROFILE DATA</h4>
+                        </div>
+
+                        <div className=" row justify-content-center text-center">
+                            <label for="name">Full Name</label>
+                        </div>
+                        <div className=" row justify-content-center text-center">
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="name"
+                                placeholder="name"
+                                onChange={this.handleNameChange}
+                            />
+                        </div>
+
+                        <div className=" row justify-content-center text-center">
+                            <label for="username">Username</label>
+                        </div>
+                        <div className=" row justify-content-center text-center">
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="username"
+                                placeholder="username"
+                                onChange={this.handleUsernameChange}
+                            />
+                        </div>
+
+                        <div className=" row justify-content-center text-center">
+                            <label for="password">Password</label>
+                        </div>
+                        <div className=" row justify-content-center text-center">
+                            <input
+                                class="form-control"
+                                type="password"
+                                name="password"
+                                placeholder="password"
+                                onChange={this.handlePasswordChange}
+                            />
                         </div>
 
                         <div className=" row justify-content-center text-center">
