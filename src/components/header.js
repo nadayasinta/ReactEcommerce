@@ -146,7 +146,7 @@ function Header(props, context) {
                     className="justify-content-end pt-0"
                 >
                     <Nav>
-                        <Nav.Link href="/">HOME</Nav.Link>
+                        <Nav.Link href="/">HOME2</Nav.Link>
                         <Nav.Link href="/category/search">SEARCH</Nav.Link>
                         {coba2}
                         {coba}
