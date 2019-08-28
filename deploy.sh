@@ -2,10 +2,11 @@
 
 eval "$(ssh-agent -s)" &&
 ssh-add -k ~/.ssh/id_rsa &&
-git pull
+# git pull
 
 source ~/.profile
 echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USER --password-stdin
+docker pull
 docker stop reactecommerce
 docker rm reactecommerce
 docker rmi nadayasinta/reactecommerce
