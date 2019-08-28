@@ -3,8 +3,6 @@ import axios from "axios";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ListCart from "../components/list_cart";
-import Logo from "../assets/images/logo.png";
-import { Link } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store/store";
 
@@ -30,11 +28,10 @@ class Cart extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.setState({ listCart: response.data });
             })
             .catch(function(error) {
-                console.log("ERRORa", error);
+                console.log("ERROR", error);
             });
     }
 
@@ -51,7 +48,6 @@ class Cart extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/transaksi");
             })
             .catch(function(error) {
@@ -61,8 +57,6 @@ class Cart extends React.Component {
 
     clickDeleteCart = (event, value) => {
         event.preventDefault();
-        console.log(event.target.value);
-
         const self = this;
         const req = {
             method: "delete",
@@ -73,7 +67,6 @@ class Cart extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/cart");
             })
             .catch(function(error) {
@@ -83,8 +76,6 @@ class Cart extends React.Component {
 
     clickUpdateCart = (event, value) => {
         event.preventDefault();
-        console.log("yaya", event.target.value);
-
         const self = this;
         const req = {
             method: "put",
@@ -101,7 +92,6 @@ class Cart extends React.Component {
 
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/cart");
             })
             .catch(function(error) {
@@ -110,21 +100,15 @@ class Cart extends React.Component {
     };
 
     handleDateChange = event => {
-        this.setState({ date: event.target.value }, () =>
-            console.log("ya1", this.state.date)
-        );
+        this.setState({ date: event.target.value });
     };
 
     handleDurationChange = event => {
-        this.setState({ duration: event.target.value }, () =>
-            console.log("ya2", this.state.duration)
-        );
+        this.setState({ duration: event.target.value });
     };
 
     handleQtyChange = event => {
-        this.setState({ qty: event.target.value }, () =>
-            console.log("ya3", this.state.qty)
-        );
+        this.setState({ qty: event.target.value });
     };
 
     render() {

@@ -3,8 +3,6 @@ import axios from "axios";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ListTransaction from "../components/list_transaksi";
-import Logo from "../assets/images/logo.png";
-import { Link } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store/store";
 
@@ -27,7 +25,6 @@ class Transaksi extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.setState({ listTransaksi: response.data });
             })
             .catch(function(error) {

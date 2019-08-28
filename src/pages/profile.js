@@ -26,7 +26,6 @@ class Profile extends React.Component {
         };
         await axios(req)
             .then(async function(response) {
-                console.log("BEANR", response.data);
                 self.setState({ dataMe: response.data });
                 const req2 = {
                     method: "get",

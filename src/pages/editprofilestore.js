@@ -38,7 +38,6 @@ class EditProfileStore extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/mystore");
             })
             .catch(function(error) {
@@ -47,39 +46,27 @@ class EditProfileStore extends React.Component {
     };
 
     handleNameChange = event => {
-        this.setState({ name: event.target.value }, () =>
-            console.log("ya3", this.state.name)
-        );
+        this.setState({ name: event.target.value });
     };
 
     handleAddressChange = event => {
-        this.setState({ address: event.target.value }, () =>
-            console.log("ya1", this.state.address)
-        );
+        this.setState({ address: event.target.value });
     };
 
     handleCityChange = event => {
-        this.setState({ city: event.target.value }, () =>
-            console.log("ya2", this.state.city)
-        );
+        this.setState({ city: event.target.value });
     };
 
     handleProvinceChange = event => {
-        this.setState({ province: event.target.value }, () =>
-            console.log("ya3", this.state.province)
-        );
+        this.setState({ province: event.target.value });
     };
 
     handleTelephoneChange = event => {
-        this.setState({ telephone: event.target.value }, () =>
-            console.log("ya3", this.state.telephone)
-        );
+        this.setState({ telephone: event.target.value });
     };
 
     handlePhotoChange = event => {
-        this.setState({ photo: event.target.value }, () =>
-            console.log("ya3", this.state.photo)
-        );
+        this.setState({ photo: event.target.value });
     };
 
     render() {
@@ -178,11 +165,6 @@ class EditProfileStore extends React.Component {
                                 type="submit"
                                 value="Submit"
                             />
-                            {/* <input
-                                className=" btn btn-dark btn-block"
-                                type="reset"
-                                value="Reset"
-                            /> */}
                         </div>
                     </form>
                 </div>

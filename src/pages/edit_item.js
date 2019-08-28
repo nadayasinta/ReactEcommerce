@@ -37,7 +37,6 @@ class EditItem extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/store/me");
             })
             .catch(function(error) {
@@ -67,7 +66,6 @@ class EditItem extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/store/me");
             })
             .catch(function(error) {

@@ -1,18 +1,8 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import logo from "../assets/images/logo.png";
-import cart from "../assets/images/cart.png";
 import facebook from "../assets/images/facebook.png";
 import twitter from "../assets/images/twitter.png";
 import instagram from "../assets/images/instagram.png";
-
-import store from "../assets/images/store.png";
 
 function Footer(props, context) {
     return (

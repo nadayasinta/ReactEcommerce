@@ -27,9 +27,7 @@ class ItemDetail extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.setState({ dataItem: response.data });
-                console.log(self.state.dataItem);
             })
             .catch(function(error) {
                 console.log("ERROR", error);
@@ -55,11 +53,9 @@ class ItemDetail extends React.Component {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
         };
-        console.log("ini2");
 
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/");
             })
             .catch(function(error) {
@@ -68,21 +64,15 @@ class ItemDetail extends React.Component {
     };
 
     handleDateChange = event => {
-        this.setState({ date: event.target.value }, () =>
-            console.log("ya1", this.state.date)
-        );
+        this.setState({ date: event.target.value });
     };
 
     handleDurationChange = event => {
-        this.setState({ duration: event.target.value }, () =>
-            console.log("ya2", this.state.duration)
-        );
+        this.setState({ duration: event.target.value });
     };
 
     handleQtyChange = event => {
-        this.setState({ qty: event.target.value }, () =>
-            console.log("ya3", this.state.qty)
-        );
+        this.setState({ qty: event.target.value });
     };
 
     render() {

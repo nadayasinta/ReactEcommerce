@@ -3,7 +3,6 @@ import axios from "axios";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ListItem from "../components/list_item";
-import Logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store/store";
@@ -29,7 +28,6 @@ class Store extends React.Component {
             };
             axios(req)
                 .then(function(response) {
-                    console.log("BEANR", response.data);
                     self.setState({ listItem: response.data });
                 })
                 .catch(function(error) {
@@ -48,7 +46,6 @@ class Store extends React.Component {
             };
             axios(req)
                 .then(function(response) {
-                    console.log("BEANR", response.data);
                     self.setState({ listItem: response.data });
                 })
                 .catch(function(error) {
@@ -69,7 +66,6 @@ class Store extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/store/me");
             })
             .catch(function(error) {
@@ -89,7 +85,6 @@ class Store extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/store/me");
             })
             .catch(function(error) {
@@ -111,7 +106,6 @@ class Store extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/store/me");
             })
             .catch(function(error) {

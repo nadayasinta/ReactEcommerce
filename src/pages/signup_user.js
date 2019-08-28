@@ -25,7 +25,6 @@ class SignUpUser extends React.Component {
                 password: self.state.password
             })
             .then(async function(response) {
-                console.log("BEANR", response.data);
                 const req1 = {
                     method: "post",
                     url: self.props.host + "/public/login",
@@ -36,7 +35,6 @@ class SignUpUser extends React.Component {
                 };
                 await axios(req1)
                     .then(async function(response) {
-                        console.log("BENAR", response.data.token);
                         localStorage.setItem("token", response.data.token);
                         const req2 = {
                             method: "get",
@@ -47,7 +45,6 @@ class SignUpUser extends React.Component {
                         };
                         await axios(req2)
                             .then(function(response) {
-                                console.log("BENAR", response.data);
                                 localStorage.setItem(
                                     "user_id",
                                     response.data.id
@@ -69,7 +66,6 @@ class SignUpUser extends React.Component {
                     .catch(function(error) {
                         console.log("ERROR", error);
                     });
-                // self.props.history.push("/signin");
             })
             .catch(function(error) {
                 console.log("ERROR", error);
@@ -77,21 +73,15 @@ class SignUpUser extends React.Component {
     };
 
     handleNameChange = event => {
-        this.setState({ name: event.target.value }, () =>
-            console.log("ya1", this.state.name)
-        );
+        this.setState({ name: event.target.value });
     };
 
     handleUsernameChange = event => {
-        this.setState({ username: event.target.value }, () =>
-            console.log("ya2", this.state.username)
-        );
+        this.setState({ username: event.target.value });
     };
 
     handlePasswordChange = event => {
-        this.setState({ password: event.target.value }, () =>
-            console.log("ya3", this.state.password)
-        );
+        this.setState({ password: event.target.value });
     };
 
     render() {
@@ -149,7 +139,6 @@ class SignUpUser extends React.Component {
                                 type="submit"
                                 value="Submit"
                             />
-                            {/* <input type="reset" value="Reset" /> */}
                         </div>
                     </form>
                 </div>

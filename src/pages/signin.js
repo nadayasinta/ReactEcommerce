@@ -27,7 +27,6 @@ class SignIn extends React.Component {
         };
         await axios(req1)
             .then(async function(response) {
-                console.log("BENAR", response.data.token);
                 localStorage.setItem("token", response.data.token);
                 const req2 = {
                     method: "get",
@@ -38,7 +37,6 @@ class SignIn extends React.Component {
                 };
                 await axios(req2)
                     .then(function(response) {
-                        console.log("BENAR", response.data);
                         localStorage.setItem("user_id", response.data.id);
                         localStorage.setItem(
                             "username",
@@ -57,15 +55,11 @@ class SignIn extends React.Component {
     };
 
     handleUsernameChange = event => {
-        this.setState({ username: event.target.value }, () =>
-            console.log("ya2", this.props.host)
-        );
+        this.setState({ username: event.target.value });
     };
 
     handlePasswordChange = event => {
-        this.setState({ password: event.target.value }, () =>
-            console.log("ya3", this.state.password)
-        );
+        this.setState({ password: event.target.value });
     };
 
     render() {
@@ -110,7 +104,6 @@ class SignIn extends React.Component {
                                 type="submit"
                                 value="Submit"
                             />
-                            {/* <input type="reset" value="Reset" /> */}
                         </div>
                     </form>
                 </div>

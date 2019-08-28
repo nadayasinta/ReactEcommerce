@@ -6,8 +6,8 @@
 .allpage {
   font-family: "Lato", sans-serif;
   padding-top: 100px;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 .header {
   font-family: "Oswald", sans-serif;
@@ -18,6 +18,9 @@
 }
 .header .navbar .inline-block {
   display: inline;
+}
+.header .cartlogo:hover {
+  transform: scale(1.1);
 }
 .home {
   font-family: "Lato", sans-serif;
@@ -44,8 +47,6 @@
 .footer {
   background-color: #243879;
   color: #f2f2f2;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
 }
 .sidebar a {
   text-decoration: none;

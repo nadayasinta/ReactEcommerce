@@ -45,7 +45,6 @@ class ProfileStore extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/mystore");
             })
             .catch(function(error) {
@@ -65,7 +64,6 @@ class ProfileStore extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/mystore");
             })
             .catch(function(error) {

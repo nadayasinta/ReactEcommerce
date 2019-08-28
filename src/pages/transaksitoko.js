@@ -3,8 +3,6 @@ import axios from "axios";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ListTransactionShop from "../components/list_transaksitoko";
-import Logo from "../assets/images/logo.png";
-import { Link } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../store/store";
 
@@ -27,18 +25,16 @@ class TransaksiToko extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.setState({ listTransaksiToko: response.data });
             })
             .catch(function(error) {
-                console.log("ERRORa", error);
+                console.log("ERROR", error);
             });
     }
 
     clickDonePay = event => {
         event.preventDefault();
         const self = this;
-        console.log(event.target.value);
         const req = {
             method: "put",
             url: self.props.host + "/transaction/shop/" + event.target.value,
@@ -59,7 +55,6 @@ class TransaksiToko extends React.Component {
     clickDoneRent = event => {
         event.preventDefault();
         const self = this;
-        console.log(event.target.value);
         const req = {
             method: "put",
             url:
@@ -72,7 +67,6 @@ class TransaksiToko extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/transaksitoko");
             })
             .catch(function(error) {
@@ -83,7 +77,6 @@ class TransaksiToko extends React.Component {
     clickDelete = event => {
         event.preventDefault();
         const self = this;
-        console.log(event.target.value);
         const req = {
             method: "delete",
             url: self.props.host + "/transaction/shop/" + event.target.value,
@@ -93,7 +86,6 @@ class TransaksiToko extends React.Component {
         };
         axios(req)
             .then(function(response) {
-                console.log("BEANR", response.data);
                 self.props.history.push("/transaksitoko");
             })
             .catch(function(error) {

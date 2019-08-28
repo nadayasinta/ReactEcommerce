@@ -2,10 +2,6 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import logo from "../assets/images/logo.png";
 import cart from "../assets/images/cart.png";
 import user from "../assets/images/user.png";
@@ -160,7 +156,7 @@ function Header(props, context) {
                                 src={cart}
                                 width="40"
                                 height="40"
-                                className="d-inline-block align-top"
+                                className="d-inline-block align-top cartlogo"
                             />
                         </Nav.Link>
                     </Nav>

@@ -16,9 +16,6 @@ function ListCategory(props) {
                         {props.category.name.toUpperCase()}
                     </h4>
                 </div>
-                {/* <div className="col-12 text-center">
-                    <span>{props.category}</span>
-                </div> */}
             </div>
         </div>
     );

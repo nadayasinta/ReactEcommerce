@@ -38,7 +38,6 @@ class EditProfile extends React.Component {
         };
         await axios(req1)
             .then(async function(response) {
-                console.log("BENAR", response.data.token);
                 const req2 = {
                     method: "patch",
                     url: self.props.host + "/user/me/detail",
@@ -56,7 +55,6 @@ class EditProfile extends React.Component {
                 };
                 await axios(req2)
                     .then(function(response) {
-                        console.log("BEANR", response.data);
                         self.props.history.push("/profile");
                     })
                     .catch(function(error) {
@@ -69,57 +67,39 @@ class EditProfile extends React.Component {
     };
 
     handleNameChange = event => {
-        this.setState({ name: event.target.value }, () =>
-            console.log("ya1", this.state.name)
-        );
+        this.setState({ name: event.target.value });
     };
 
     handleUsernameChange = event => {
-        this.setState({ username: event.target.value }, () =>
-            console.log("ya1", this.state.username)
-        );
+        this.setState({ username: event.target.value });
     };
 
     handlePasswordChange = event => {
-        this.setState({ password: event.target.value }, () =>
-            console.log("ya1", this.state.password)
-        );
+        this.setState({ password: event.target.value });
     };
 
     handleAddressChange = event => {
-        this.setState({ address: event.target.value }, () =>
-            console.log("ya1", this.state.address)
-        );
+        this.setState({ address: event.target.value });
     };
 
     handleCityChange = event => {
-        this.setState({ city: event.target.value }, () =>
-            console.log("ya2", this.state.city)
-        );
+        this.setState({ city: event.target.value });
     };
 
     handleProvinceChange = event => {
-        this.setState({ province: event.target.value }, () =>
-            console.log("ya3", this.state.province)
-        );
+        this.setState({ province: event.target.value });
     };
 
     handleTelephoneChange = event => {
-        this.setState({ telephone: event.target.value }, () =>
-            console.log("ya3", this.state.telephone)
-        );
+        this.setState({ telephone: event.target.value });
     };
 
     handleEmailChange = event => {
-        this.setState({ email: event.target.value }, () =>
-            console.log("ya3", this.state.email)
-        );
+        this.setState({ email: event.target.value });
     };
 
     handlePhotoChange = event => {
-        this.setState({ photo: event.target.value }, () =>
-            console.log("ya3", this.state.photo)
-        );
+        this.setState({ photo: event.target.value });
     };
 
     render() {
