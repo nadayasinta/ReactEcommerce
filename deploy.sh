@@ -6,7 +6,7 @@ ssh-add -k ~/.ssh/id_rsa &&
 
 source ~/.profile
 echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USER --password-stdin
-docker pull
+sudo docker pull
 docker stop reactecommerce
 docker rm reactecommerce
 docker rmi nadayasinta/reactecommerce
