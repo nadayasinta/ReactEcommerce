@@ -21,7 +21,7 @@ function Header(props, context) {
         coba = (
             <NavDropdown
                 title={
-                    <div className="inline-block">
+                    <div className="inline-block ">
                         <img
                             alt=""
                             src={user}
