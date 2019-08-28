@@ -2,11 +2,11 @@ import React from "react";
 
 function ListCategory(props) {
     return (
-        <div className="listcategory">
+        <div className="listcategory homeimage">
             <div className="row justify-content-center mx-1 my-4 py-4">
-                <div className="col-12 text-center p-3 rounded-circle border bg-white">
+                <div className="col-12 text-center p-3 rounded-circle border bg-white ">
                     <img
-                        className="w-100 p-4"
+                        className="w-100 p-4 "
                         src={props.category.img}
                         alt=""
                     />
