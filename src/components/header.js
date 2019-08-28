@@ -138,9 +138,7 @@ function Header(props, context) {
                         height="50"
                         className="inline-block "
                     />
-                    <span className="align-self-center">
-                        {" LEND&RENT!!!!!!!!!!"}
-                    </span>
+                    <span className="align-self-center">{" LEND&RENT"}</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse
@@ -148,7 +146,7 @@ function Header(props, context) {
                     className="justify-content-end pt-0"
                 >
                     <Nav>
-                        <Nav.Link href="/">HOME2</Nav.Link>
+                        <Nav.Link href="/">HOME</Nav.Link>
                         <Nav.Link href="/category/search">SEARCH</Nav.Link>
                         {coba2}
                         {coba}
