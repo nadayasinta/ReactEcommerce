@@ -1,7 +1,10 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import Avatar from "../assets/images/man.png";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class Profile extends React.Component {
     constructor(props) {
@@ -16,7 +19,7 @@ class Profile extends React.Component {
         const self = this;
         const req = {
             method: "get",
-            url: "http://localhost:5000/user/me",
+            url: self.props.host + "/user/me",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -27,7 +30,7 @@ class Profile extends React.Component {
                 self.setState({ dataMe: response.data });
                 const req2 = {
                     method: "get",
-                    url: "http://localhost:5000/user/me/detail",
+                    url: self.props.host + "/user/me/detail",
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
@@ -87,9 +90,13 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default Profile;
+export default connect(
+    "listCategory,host",
+    actions
+)(Profile);

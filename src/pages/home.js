@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import ListCategory from "../components/list_category";
 import { Link } from "react-router-dom";
 import { connect } from "unistore/react";
@@ -18,15 +19,15 @@ class Home extends React.Component {
                             src={imagehome}
                             alt=""
                         />
-                        <div class="centered fontoswald px-5 py-3">WELCOME</div>
+                        <div class="centered fontoswald">WELCOME</div>
                     </div>
                 </div>
 
                 <div class="container mt-4">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         {this.props.listCategory.map((item, index) => {
                             return (
-                                <div className="col-md-3 col-sm-6 col-12">
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <Link
                                         to={"/category/" + item.name}
                                         style={{
@@ -42,12 +43,13 @@ class Home extends React.Component {
                         })}
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
 export default connect(
-    "listCategory",
+    "listCategory,host",
     actions
 )(Home);

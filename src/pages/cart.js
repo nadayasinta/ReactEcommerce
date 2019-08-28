@@ -1,11 +1,14 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import ListCart from "../components/list_cart";
 import Logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
-class Category extends React.Component {
+class Cart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +23,7 @@ class Category extends React.Component {
         const self = this;
         const req = {
             method: "get",
-            url: "http://localhost:5000/cart/list",
+            url: self.props.host + "/cart/list",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -41,7 +44,7 @@ class Category extends React.Component {
         console.log(event.target.value);
         const req = {
             method: "post",
-            url: "http://localhost:5000/cart/checkout",
+            url: self.props.host + "/cart/checkout",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -63,7 +66,7 @@ class Category extends React.Component {
         const self = this;
         const req = {
             method: "delete",
-            url: "http://localhost:5000/cart/" + event.target.value,
+            url: self.props.host + "/cart/" + event.target.value,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -85,7 +88,7 @@ class Category extends React.Component {
         const self = this;
         const req = {
             method: "put",
-            url: "http://localhost:5000/cart/" + event.target.value,
+            url: self.props.host + "/cart/" + event.target.value,
             data: {
                 date: self.state.date,
                 duration: self.state.duration,
@@ -158,9 +161,13 @@ class Category extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default Category;
+export default connect(
+    "listCategory,host",
+    actions
+)(Cart);

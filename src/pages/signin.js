@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -16,7 +19,7 @@ class SignIn extends React.Component {
         const self = this;
         const req1 = {
             method: "post",
-            url: "http://localhost:5000/public/login",
+            url: self.props.host + "/public/login",
             data: {
                 username: self.state.username,
                 password: self.state.password
@@ -28,7 +31,7 @@ class SignIn extends React.Component {
                 localStorage.setItem("token", response.data.token);
                 const req2 = {
                     method: "get",
-                    url: "http://localhost:5000/user/me",
+                    url: self.props.host + "/user/me",
                     headers: {
                         Authorization: "Bearer " + response.data.token
                     }
@@ -55,7 +58,7 @@ class SignIn extends React.Component {
 
     handleUsernameChange = event => {
         this.setState({ username: event.target.value }, () =>
-            console.log("ya2", this.state.username)
+            console.log("ya2", this.props.host)
         );
     };
 
@@ -111,9 +114,13 @@ class SignIn extends React.Component {
                         </div>
                     </form>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default SignIn;
+export default connect(
+    "listCategory,host",
+    actions
+)(SignIn);

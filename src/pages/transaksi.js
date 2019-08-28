@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import ListTransaction from "../components/list_transaksi";
 import Logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class Transaksi extends React.Component {
     constructor(props) {
@@ -17,7 +20,7 @@ class Transaksi extends React.Component {
         const self = this;
         const req = {
             method: "get",
-            url: "http://localhost:5000/transaction/me/list",
+            url: self.props.host + "/transaction/me/list",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -40,16 +43,20 @@ class Transaksi extends React.Component {
                     <div class="row ">
                         {this.state.listTransaksi.map((item, index) => {
                             return (
-                                <div className="col-3">
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <ListTransaction transaction={item} />
                                 </div>
                             );
                         })}
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default Transaksi;
+export default connect(
+    "listCategory,host",
+    actions
+)(Transaksi);

@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import ListItem from "../components/list_item";
 import Logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class Store extends React.Component {
     constructor(props) {
@@ -19,7 +22,7 @@ class Store extends React.Component {
         if (self.props.match.params.store_id === "me") {
             const req = {
                 method: "get",
-                url: "http://localhost:5000/item/listall",
+                url: self.props.host + "/item/listall",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token")
                 }
@@ -35,7 +38,7 @@ class Store extends React.Component {
         } else {
             const req = {
                 method: "get",
-                url: "http://localhost:5000/item/list",
+                url: self.props.host + "/item/list",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token")
                 },
@@ -59,7 +62,7 @@ class Store extends React.Component {
         const self = this;
         const req = {
             method: "put",
-            url: "http://localhost:5000/item/me/activate/" + event.target.value,
+            url: self.props.host + "/item/me/activate/" + event.target.value,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -79,7 +82,7 @@ class Store extends React.Component {
         const self = this;
         const req = {
             method: "delete",
-            url: "http://localhost:5000/item/me/activate/" + event.target.value,
+            url: self.props.host + "/item/me/activate/" + event.target.value,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -101,7 +104,7 @@ class Store extends React.Component {
         const self = this;
         const req = {
             method: "put",
-            url: "http://localhost:5000/item/me/" + event.target.value,
+            url: self.props.host + "/item/me/" + event.target.value,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -120,10 +123,10 @@ class Store extends React.Component {
             <div class="container-fluid allpage">
                 <Header user={localStorage.getItem("status")} />
                 <div class="container page_content">
-                    <div class="row ">
+                    <div class="row">
                         {this.state.listItem.map((item, index) => {
                             return (
-                                <div className="col-3">
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <Link
                                         to={"/item/" + item.item.id}
                                         style={{
@@ -168,9 +171,13 @@ class Store extends React.Component {
                         <br />
                     )}
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default Store;
+export default connect(
+    "listCategory,host",
+    actions
+)(Store);

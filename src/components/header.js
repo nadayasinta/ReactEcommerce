@@ -25,7 +25,7 @@ function Header(props, context) {
         coba = (
             <NavDropdown
                 title={
-                    <div>
+                    <div className="inline-block">
                         <img
                             alt=""
                             src={user}
@@ -46,7 +46,7 @@ function Header(props, context) {
         coba = (
             <NavDropdown
                 title={
-                    <div>
+                    <div className="inline-block">
                         <img
                             alt=""
                             src={user}
@@ -79,7 +79,7 @@ function Header(props, context) {
             coba = (
                 <NavDropdown
                     title={
-                        <div>
+                        <div className="inline-block">
                             <img
                                 alt=""
                                 src={user}
@@ -110,14 +110,8 @@ function Header(props, context) {
             coba2 = (
                 <NavDropdown
                     title={
-                        <div>
-                            <img
-                                alt=""
-                                src={store}
-                                width="20"
-                                height="20"
-                                className="inline-block"
-                            />
+                        <div className="inline-block">
+                            <img alt="" src={store} width="20" height="20" />
                             {<span> MY STORE</span>}
                         </div>
                     }
@@ -146,7 +140,7 @@ function Header(props, context) {
                         src={logo}
                         width="50"
                         height="50"
-                        className="inline-block"
+                        className="inline-block "
                     />
                     <span className="align-self-center">{" LEND&RENT"}</span>
                 </Navbar.Brand>
@@ -157,15 +151,15 @@ function Header(props, context) {
                 >
                     <Nav>
                         <Nav.Link href="/">HOME</Nav.Link>
-                        <Nav.Link href="/category/search">SHOP</Nav.Link>
+                        <Nav.Link href="/category/search">SEARCH</Nav.Link>
                         {coba2}
                         {coba}
                         <Nav.Link href="/cart">
                             <img
                                 alt=""
                                 src={cart}
-                                width="30"
-                                height="30"
+                                width="40"
+                                height="40"
                                 className="d-inline-block align-top"
                             />
                         </Nav.Link>

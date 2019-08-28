@@ -10,7 +10,9 @@ import logo_category7 from "../assets/images/cat7.png";
 import logo_category8 from "../assets/images/cat8.png";
 
 const intialState = {
-    port: "http://localhost:5000",
+    // host: "http://localhost:5050",
+    host: "http://api.lendandrent.xyz",
+
     listCategory: [
         {
             name: "Nursery",

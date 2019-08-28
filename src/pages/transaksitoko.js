@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import ListTransactionShop from "../components/list_transaksitoko";
 import Logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class TransaksiToko extends React.Component {
     constructor(props) {
@@ -17,7 +20,7 @@ class TransaksiToko extends React.Component {
         const self = this;
         const req = {
             method: "get",
-            url: "http://localhost:5000/transaction/shop/list",
+            url: self.props.host + "/transaction/shop/list",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -38,7 +41,7 @@ class TransaksiToko extends React.Component {
         console.log(event.target.value);
         const req = {
             method: "put",
-            url: "http://localhost:5000/transaction/shop/" + event.target.value,
+            url: self.props.host + "/transaction/shop/" + event.target.value,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -60,7 +63,8 @@ class TransaksiToko extends React.Component {
         const req = {
             method: "put",
             url:
-                "http://localhost:5000/transaction/shop/done/" +
+                self.props.host +
+                "/transaction/shop/done/" +
                 event.target.value,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
@@ -82,7 +86,7 @@ class TransaksiToko extends React.Component {
         console.log(event.target.value);
         const req = {
             method: "delete",
-            url: "http://localhost:5000/transaction/shop/" + event.target.value,
+            url: self.props.host + "/transaction/shop/" + event.target.value,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -105,7 +109,7 @@ class TransaksiToko extends React.Component {
                     <div class="row ">
                         {this.state.listTransaksiToko.map((item, index) => {
                             return (
-                                <div className="col-3">
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <ListTransactionShop
                                         transaction={item}
                                         DonePay={this.clickDonePay}
@@ -117,9 +121,13 @@ class TransaksiToko extends React.Component {
                         })}
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default TransaksiToko;
+export default connect(
+    "listCategory,host",
+    actions
+)(TransaksiToko);

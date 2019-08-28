@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class EditItem extends React.Component {
     constructor(props) {
@@ -18,7 +21,7 @@ class EditItem extends React.Component {
         const self = this;
         const req = {
             method: "post",
-            url: "http://localhost:5000/item/me",
+            url: self.props.host + "/item/me",
             data: {
                 name: self.state.name,
                 qty: self.state.qty,
@@ -48,8 +51,7 @@ class EditItem extends React.Component {
         const req = {
             method: "put",
             url:
-                "http://localhost:5000/item/me/" +
-                this.props.match.params.item_id,
+                self.props.host + "/item/me/" + this.props.match.params.item_id,
             data: {
                 name: self.state.name,
                 qty: self.state.qty,
@@ -233,10 +235,14 @@ class EditItem extends React.Component {
                             </div>
                         </form>
                     </div>
+                    <Footer />
                 </div>
             );
         }
     }
 }
 
-export default EditItem;
+export default connect(
+    "listCategory,host",
+    actions
+)(EditItem);

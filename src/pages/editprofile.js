@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class EditProfile extends React.Component {
     constructor(props) {
@@ -23,11 +26,14 @@ class EditProfile extends React.Component {
         const self = this;
         const req1 = {
             method: "put",
-            url: "http://localhost:5000/user/me",
+            url: self.props.host + "/user/me",
             data: {
                 name: self.state.name,
                 username: self.state.username,
                 password: self.state.password
+            },
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
             }
         };
         await axios(req1)
@@ -35,7 +41,7 @@ class EditProfile extends React.Component {
                 console.log("BENAR", response.data.token);
                 const req2 = {
                     method: "patch",
-                    url: "http://localhost:5000/user/me/detail",
+                    url: self.props.host + "/user/me/detail",
                     data: {
                         address: self.state.address,
                         city: self.state.city,
@@ -257,9 +263,13 @@ class EditProfile extends React.Component {
                         </div>
                     </form>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default EditProfile;
+export default connect(
+    "listCategory,host",
+    actions
+)(EditProfile);

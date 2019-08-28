@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class EditProfileStore extends React.Component {
     constructor(props) {
@@ -20,7 +23,7 @@ class EditProfileStore extends React.Component {
         const self = this;
         const req = {
             method: "put",
-            url: "http://localhost:5000/shop/me",
+            url: self.props.host + "/shop/me",
             data: {
                 name: self.state.name,
                 address: self.state.address,
@@ -183,9 +186,13 @@ class EditProfileStore extends React.Component {
                         </div>
                     </form>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default EditProfileStore;
+export default connect(
+    "listCategory,host",
+    actions
+)(EditProfileStore);

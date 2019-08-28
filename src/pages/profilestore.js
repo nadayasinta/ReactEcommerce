@@ -1,7 +1,10 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import Avatar from "../assets/images/man.png";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class ProfileStore extends React.Component {
     constructor(props) {
@@ -15,7 +18,7 @@ class ProfileStore extends React.Component {
         const self = this;
         const req = {
             method: "get",
-            url: "http://localhost:5000/shop/me",
+            url: self.props.host + "/shop/me",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -35,7 +38,7 @@ class ProfileStore extends React.Component {
         const self = this;
         const req = {
             method: "put",
-            url: "http://localhost:5000/shop/me/activate",
+            url: self.props.host + "/shop/me/activate",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -55,7 +58,7 @@ class ProfileStore extends React.Component {
         const self = this;
         const req = {
             method: "delete",
-            url: "http://localhost:5000/shop/me/activate",
+            url: self.props.host + "/shop/me/activate",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
@@ -118,9 +121,13 @@ class ProfileStore extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default ProfileStore;
+export default connect(
+    "listCategory,host",
+    actions
+)(ProfileStore);

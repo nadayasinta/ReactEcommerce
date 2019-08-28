@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 
 class SignUpToko extends React.Component {
     constructor(props) {
@@ -20,7 +23,7 @@ class SignUpToko extends React.Component {
         const self = this;
         const req = {
             method: "post",
-            url: "http://localhost:5000/shop/addnew",
+            url: self.props.host + "/shop/addnew",
             data: {
                 name: self.state.name,
                 address: self.state.address,
@@ -186,10 +189,14 @@ class SignUpToko extends React.Component {
                             </div>
                         </form>
                     </div>
+                    <Footer />
                 </div>
             );
         }
     }
 }
 
-export default SignUpToko;
+export default connect(
+    "listCategory,host",
+    actions
+)(SignUpToko);

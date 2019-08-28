@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import ListItem from "../components/list_item";
 import Logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
+import { connect } from "unistore/react";
+import { actions } from "../store/store";
 import DefaultImage from "../assets/images/picture.png";
 
 class ItemDetail extends React.Component {
@@ -20,7 +23,7 @@ class ItemDetail extends React.Component {
         const self = this;
         const req = {
             method: "get",
-            url: "http://localhost:5000/item/" + self.props.match.params.item_id
+            url: self.props.host + "/item/" + self.props.match.params.item_id
         };
         axios(req)
             .then(function(response) {
@@ -40,7 +43,8 @@ class ItemDetail extends React.Component {
         const req = {
             method: "patch",
             url:
-                "http://localhost:5000/item/rent/" +
+                self.props.host +
+                "/item/rent/" +
                 self.props.match.params.item_id,
             data: {
                 date: self.state.date,
@@ -87,7 +91,7 @@ class ItemDetail extends React.Component {
                 <Header user={localStorage.getItem("status")} />
                 <div class="container page_content">
                     <div className="row justify-content-center  border mx-1 my-4 p-4">
-                        <div className="col-6">
+                        <div className="col-md-6 col-12">
                             <div className="row justify-content-center">
                                 <img
                                     className="w-100"
@@ -109,7 +113,7 @@ class ItemDetail extends React.Component {
                             </div>
                         </div>
 
-                        <div className="col-6 pl-4 text-left">
+                        <div className="col-md-6 col-12 pl-4 text-md-left text-center">
                             <div className="row">
                                 <div className="col-12">
                                     <h2 className="font-weight-bold fontoswald mb-0">
@@ -155,9 +159,9 @@ class ItemDetail extends React.Component {
                             </div>
                         </div>
 
-                        <div className="col-6"></div>
+                        <div className="col-md-6 col-0"></div>
 
-                        <div className="col-6 pl-4">
+                        <div className="col-md-6 col-12 pl-4">
                             <form
                                 className="row justify-content-center"
                                 onSubmit={this.doAddToCart}
@@ -214,9 +218,13 @@ class ItemDetail extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
 }
 
-export default ItemDetail;
+export default connect(
+    "listCategory,host",
+    actions
+)(ItemDetail);
